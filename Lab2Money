@@ -1,6 +1,6 @@
 package com.company;
 
-public class Main {
+public class Lab2Digits {
 
     public static void main(String[] args) {
         //input the dollars and cents
@@ -8,14 +8,14 @@ public class Main {
         int[] m2 = createMoney(300, 99);
 
         //print statements to make sure each task works
-        String result1 = "$" + m1[0] + "." + m1[1];
-        String result2 = "$" + m2[0] + "." + m2[1];
+        String result1 = prettyPrint(m1);
+        String result2 = prettyPrint(m2);
         System.out.println("----------------TASK 1----------------");
         System.out.println(result1);
         System.out.println("----------------TASK 2----------------");
         System.out.println(dollars(m1) + " dollars");
         System.out.println(cents(m1) + " cents");
-        System.out.println(prettyPrint(m1));
+        System.out.println(moneyToText(m1));
         System.out.println("----------------TASK 4----------------");
         int[] addSum = add(m1, m2);
         System.out.println("The sum of " + result1 + " and " + result2 + " is $" + addSum[0] + "." + addSum[1]);
@@ -51,6 +51,10 @@ public class Main {
     }//End cents function
 
     public static String prettyPrint(int[] money) {
+        return("$" + money[0] + "." + money[1] );
+    }
+
+    public static String moneyToText(int[] money) {
         String returnValue = "";
 
         //Hundreds digit if statements
