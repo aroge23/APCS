@@ -2,13 +2,58 @@ package com.company;
 
 public class StringLab {
     public static void main(String[] args) {
+        System.out.println(spaceCount("Hello World"));
+        System.out.println(vowelCount("Hello World"));
+        System.out.println(letterCount("Hello World", "l"));
 
     }
 
     public static int spaceCount(String s) {
+        int returnValue = 0;
         for (int i = 0; i < s.length(); i++ ) {
-            if (s.substring()
+            if (s.substring(i, i + 1).compareTo(" ") == 0 ){
+                returnValue = returnValue + 1;
+            }
         }
+        return returnValue;
+    }
+
+    public static int vowelCount(String s) {
+        int returnValue = 0;
+        for (int i = 0; i < s.length(); i++ ) {
+            if (s.substring(i, i + 1).compareTo("a") == 0 ){
+                returnValue = returnValue + 1;
+            }
+            if (s.substring(i, i + 1).compareTo("e") == 0 ){
+                returnValue = returnValue + 1;
+            }
+            if (s.substring(i, i + 1).compareTo("i") == 0 ){
+                returnValue = returnValue + 1;
+            }
+            if (s.substring(i, i + 1).compareTo("o") == 0 ){
+                returnValue = returnValue + 1;
+            }
+            if (s.substring(i, i + 1).compareTo("u") == 0 ){
+                returnValue = returnValue + 1;
+            }
+        }
+        return returnValue;
+    }
+
+    public static int letterCount(String s, String letter) {
+        int returnValue = 0;
+        for (int i = 0; i < s.length(); i++ ) {
+            if (s.substring(i, i + 1).compareTo(letter) == 0){
+                returnValue = returnValue + 1;
+            }
+        }
+        return returnValue;
+    }
+
+    public static String beforeString(String s, String substr) {
+        String returnValue = "";
+
+        return returnValue;
     }
 
 }
