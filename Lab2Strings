@@ -2,9 +2,15 @@ package com.company;
 
 public class StringLab {
     public static void main(String[] args) {
+        String s = "Hello World";
+        String s2 = "hello. my name is dave. goodbye";
         System.out.println(spaceCount("Hello World"));
         System.out.println(vowelCount("Hello World"));
         System.out.println(letterCount("Hello World", "l"));
+        System.out.println(beforeString("Hello World", "ld"));
+        System.out.println(afterString(s, "Wo"));
+        System.out.println(capVowel(s));
+        System.out.println(s.replace(s.substring(2,3), s.substring(2,3).toUpperCase()));
 
     }
 
@@ -53,7 +59,54 @@ public class StringLab {
     public static String beforeString(String s, String substr) {
         String returnValue = "";
 
+        int stop = s.indexOf(substr);
+        returnValue += s.substring(0, stop);
+
         return returnValue;
     }
+
+    public static String afterString(String s, String substr) {
+        String returnValue = "";
+
+        int start = s.indexOf(substr);
+        returnValue += s.substring((start + substr.length()), s.length());
+
+        return returnValue;
+    }
+
+    public static String capVowel(String s) {
+        String returnValue = s;
+        for (int i = 0; i < s.length(); i++ ) {
+            if (returnValue.substring(i, i + 1).compareTo("a") == 0 ){
+                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            }
+            if (returnValue.substring(i, i + 1).compareTo("e") == 0 ){
+                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            }
+            if (returnValue.substring(i, i + 1).compareTo("i") == 0 ){
+                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            }
+            if (returnValue.substring(i, i + 1).compareTo("o") == 0 ){
+                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            }
+            if (returnValue.substring(i, i + 1).compareTo("u") == 0 ){
+                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            }
+        }
+        return returnValue;
+    }
+
+    public static String capFirstWord(String s) {
+        String returnValue = s;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (returnValue.substring(i, i+1).compareTo(".") == 0) {
+                returnValue.replace(returnValue.substring(i+2, i+3), returnValue.substring(i+2, i+3).toUpperCase());
+            }
+        }
+
+        return returnValue;
+    }
+
 
 }
