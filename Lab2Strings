@@ -10,7 +10,7 @@ public class StringLab {
         System.out.println(beforeString("Hello World", "ld"));
         System.out.println(afterString(s, "Wo"));
         System.out.println(capVowel(s));
-        System.out.println(s.replace(s.substring(2,3), s.substring(2,3).toUpperCase()));
+        //System.out.println(capFirstWord(s2));
 
     }
 
@@ -75,38 +75,57 @@ public class StringLab {
     }
 
     public static String capVowel(String s) {
-        String returnValue = s;
+        String bank = "";
         for (int i = 0; i < s.length(); i++ ) {
-            if (returnValue.substring(i, i + 1).compareTo("a") == 0 ){
-                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+            if (s.substring(i, i+1).compareTo("a") != 0 && s.substring(i, i+1).compareTo("e") != 0 &&
+                    s.substring(i, i+1).compareTo("i") != 0 && s.substring(i, i+1).compareTo("o") != 0 &&
+                    s.substring(i, i+1).compareTo("u") != 0) {
+                bank += s.substring(i, i+1);
             }
-            if (returnValue.substring(i, i + 1).compareTo("e") == 0 ){
-                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
-            }
-            if (returnValue.substring(i, i + 1).compareTo("i") == 0 ){
-                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
-            }
-            if (returnValue.substring(i, i + 1).compareTo("o") == 0 ){
-                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
-            }
-            if (returnValue.substring(i, i + 1).compareTo("u") == 0 ){
-                returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
-            }
+            if (s.substring(i, i+1).compareTo("a") == 0)
+                bank += s.substring(i, i+1).toUpperCase();
+            if (s.substring(i, i+1).compareTo("e") == 0)
+                bank += s.substring(i, i+1).toUpperCase();
+            if (s.substring(i, i+1).compareTo("i") == 0)
+                bank += s.substring(i, i+1).toUpperCase();
+            if (s.substring(i, i+1).compareTo("o") == 0)
+                bank += s.substring(i, i+1).toUpperCase();
+            if (s.substring(i, i+1).compareTo("u") == 0)
+                bank += s.substring(i, i+1).toUpperCase();
         }
-        return returnValue;
+        return bank;
     }
 
     public static String capFirstWord(String s) {
-        String returnValue = s;
+        String bank = "";
 
         for (int i = 0; i < s.length(); i++) {
-            if (returnValue.substring(i, i+1).compareTo(".") == 0) {
-                returnValue.replace(returnValue.substring(i+2, i+3), returnValue.substring(i+2, i+3).toUpperCase());
-            }
+            if (s.substring(i, i+1).compareTo(".") != 0 && s.substring(i, i+1).compareTo(s.substring(i, i+1).toUpperCase()) == 0)
+                bank += s.substring(i, i+1);
+            
+            if (s.substring(i, i+1).compareTo(".") == 0)
+                
         }
 
-        return returnValue;
+        return s;
     }
 
 
 }
+
+//if (returnValue.substring(i, i + 1).compareTo("a") == 0 ){
+//        returnValue = returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+//        }
+//        if (returnValue.substring(i, i + 1).compareTo("e") == 0 ){
+//        returnValue = returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+//        }
+//        if (returnValue.substring(i, i + 1).compareTo("i") == 0 ){
+//        returnValue = returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+//        }
+//        if (returnValue.substring(i, i + 1).compareTo("o") == 0 ){
+//        returnValue = returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+//        }
+//        if (returnValue.substring(i, i + 1).compareTo("u") == 0 ){
+//        returnValue = returnValue.replace(returnValue.substring(i, i+1), returnValue.substring(i, i+1).toUpperCase());
+//        }
+
