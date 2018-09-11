@@ -5,7 +5,7 @@ public class StringGames {
     public static void main(String[] args) {
         System.out.println(stage1("OOXXXOOOXOXOXOOOXXOXXOXOOXOXO"));
         System.out.println(stage2("OOXXXOOOXOXOXOOOXXOXXOXOOXOXO"));
-        System.out.println(stage3("OOXXXOOOXOXOXOOOXXOXXOXOOXOXO"));
+        System.out.println(stage3("OOXOXOX"));
     }
 
     public static int stage1(String s) {
@@ -50,20 +50,28 @@ public class StringGames {
         int rV = 0;
         int tick = 0;
 
-        for (int i = 1; i < s.length(); i += 2) {
+        for (int i = 1; i < (s.length() - 1); i++) {
             if (s.substring(i, i+1).compareTo("X") == 0 && s.substring(i-1, i).compareTo("O") == 0) {
-                rV = rV + tick;
-                if (s.substring(i+1, i+2).compareTo("O") == 0)
-                    rV = (-1 * (rV +1));
+                tick += 1;
+                rV = tick;
+                if (s.substring(i+1, i+2).compareTo("O") == 0) {
+                    tick += 1;
+                    rV = (-1 * (tick));
+                }
             } else if (s.substring(i, i+1).compareTo("O") == 0 && s.substring(i-1, i).compareTo("X") == 0) {
-                rV = (-1 * (rV + 1));
-                if (s.substring(i + 1, i + 2).compareTo("X") == 0)
-                    rV = (-1 * (rV + 1));
+                tick += 1;
+                rV = (-1 * (tick));
+                if (s.substring(i + 1, i + 2).compareTo("X") == 0) {
+                    tick += 1;
+                    rV = (tick);
+                }
             }
+            if (s.substring(i, i+1).compareTo("X") == 0 && s.substring(i-1, i).compareTo("X") == 0)
+                tick = 0;
+            else if (s.substring(i, i+1).compareTo("O") == 0 && s.substring(i-1, i).compareTo("O") == 0)
+                tick = 0;
         }
-
         return rV;
-
     }
 
 }
