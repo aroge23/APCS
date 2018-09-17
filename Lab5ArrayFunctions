@@ -1,0 +1,82 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] a = new int[5];
+        a[0] = 4;
+        a[1] = 9;
+        a[2] = 2;
+        a[3] = 0;
+        a[4] = 7;
+        System.out.println(prettyPrint(a));
+        System.out.println(prettyPrint(resize(a, 8)));
+    }
+    public static int min(int a, int b) {
+        if (a < b)
+            return a;
+        else
+            return b;
+    }
+
+    public static int aMin(int[] a) {
+        int rv = 0;
+
+        for (int i = 0; i < a.length; i++)
+            if (a[i] < rv)
+                a[i] = rv;
+        return rv;
+    }
+
+    public static int[] add(int[] a, int[] b) {
+        int max = 0;
+        if (a.length > b.length)
+            max = a.length;
+        else
+            max = b.length;
+
+        int[] rv = new int[max];
+        if (a.length > b.length)
+            rv = a;
+        else
+            rv = b;
+
+        for (int i = 0; i < a.length && i < b.length; i++)
+            rv[i] = a[i] + b[i];
+        return rv;
+    }
+
+    public static String prettyPrint(int[] a) {
+        String rv = "{";
+
+        for (int i = 0; i < a.length; i++) {
+            if (i != a.length - 1)
+                rv += a[i] + ", ";
+            else
+                rv += a[i];
+        }
+        rv += "}";
+        return rv;
+    }
+
+    public static int[] copy (int[] a) {
+        int[] rv = new int[a.length];
+
+        for (int i = 0; i < a.length; i++)
+            rv[i] = a[i];
+
+        return rv;
+    }
+
+    public static int[] resize(int[] a, int newLength) {
+        int[] rv = new int[newLength];
+
+        for (int i = 0; i < newLength; i++) {
+            if (i < a.length)
+                rv[i] = a[i];
+            else
+                rv[i] = 0;
+        }
+        return rv;
+    }
+}
