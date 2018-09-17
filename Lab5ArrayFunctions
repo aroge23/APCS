@@ -3,14 +3,12 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        int[] a = new int[5];
-        a[0] = 4;
-        a[1] = 9;
-        a[2] = 2;
-        a[3] = 0;
-        a[4] = 7;
-        System.out.println(prettyPrint(a));
-        System.out.println(prettyPrint(resize(a, 8)));
+        int[] a = create5(8, 2, 6, 1, 9);
+	    int[] b = create5(5, 4, 3, 2, 1);
+	    System.out.println(prettyPrint(a));
+	    System.out.println(prettyPrint(resize(a, 8)));
+	    //System.out.println(prettyPrint(append(a, b)));
+	    System.out.println(a.length);
     }
     public static int min(int a, int b) {
         if (a < b)
@@ -18,13 +16,25 @@ public class Main {
         else
             return b;
     }
+    
+    //A function that I created for convenience, this is not part of the assignment
+    public static int[] create5(int a, int b, int c, int d, int e) {
+    	int[] rv = new int[5];
+    	rv[0] = a;
+    	rv[1] = b;
+    	rv[2] = c;
+    	rv[3] = d;
+    	rv[4] = e;
+    	
+    	return rv;
+    }
 
     public static int aMin(int[] a) {
-        int rv = 0;
+        int rv = 2147483647;
 
         for (int i = 0; i < a.length; i++)
             if (a[i] < rv)
-                a[i] = rv;
+                rv = a[i];
         return rv;
     }
 
@@ -78,5 +88,29 @@ public class Main {
                 rv[i] = 0;
         }
         return rv;
+    }
+    
+    public static int[] append(int[] a, int[] b) {
+        int len = a.length + b.length;
+        int[] rv = new int[len];
+        
+        for (int i = 0; i < len; i++) {
+        	if (i < a.length)
+        	    rv[i] = a[i];
+        	else
+        	    rv[i] = b[i];
+        }
+        return rv;
+    }
+    
+    public static int[] subArray(int[] a, int firstIncluded, int firstExcluded) {
+        int len = firstExcluded - firstIncluded
+        int[] rv = new int[len];
+        if (firstExcluded <= a.length) {
+        	for (int i = 0; i < len; i++) {
+        	    rv[i] = a[firstIncluded+i];
+        	}
+        	return rv;
+        }
     }
 }
