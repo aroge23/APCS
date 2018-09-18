@@ -9,6 +9,7 @@ public class Main {
 	    System.out.println(prettyPrint(resize(a, 8)));
 	    //System.out.println(prettyPrint(append(a, b)));
 	    System.out.println(a.length);
+	    System.out.println(prettyPrint(subArray(a, 0, 6)));
     }
     public static int min(int a, int b) {
         if (a < b)
@@ -104,13 +105,29 @@ public class Main {
     }
     
     public static int[] subArray(int[] a, int firstIncluded, int firstExcluded) {
-        int len = firstExcluded - firstIncluded
+        int len = firstExcluded - firstIncluded;
         int[] rv = new int[len];
         if (firstExcluded <= a.length) {
         	for (int i = 0; i < len; i++) {
         	    rv[i] = a[firstIncluded+i];
         	}
         	return rv;
+        }
+        else if (firstIncluded == firstExcluded) {
+        	return null;
+        }
+        else{
+        	return null;
+        }
+    }
+    
+    public static void makeSorted(int[] a) {
+        int swap = 0, rv = 0;
+        
+        for (int i = 1; i < a.length; i++) {
+        	if (a[i-1] > a[i]) {
+        	    //start
+        	}
         }
     }
 }
