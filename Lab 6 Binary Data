@@ -1,0 +1,111 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int a = 10100101;
+        int[] b = {1, 0, 1, 0, 0, 1, 0, 1};
+
+        System.out.println(pp(createBin(a)));
+        System.out.println(pp(createBin("10000101")));
+        System.out.println(intValue(b));
+        System.out.println(pp(doubleValue(b)));
+        System.out.println(pp(intToBinary(-80)));
+    }
+
+    public static int[] createBin(int binaryNumber) {
+        int[] rv = new int[8];
+        rv[0] = binaryNumber / (int)Math.pow(10, 7);
+        for(int i = 1; i < rv.length; i++) {
+            rv[i] = (binaryNumber % (int)Math.pow(10, 8-i)) / (int)Math.pow(10, 7-i);
+        }
+
+        return rv;
+    }
+
+    public static String pp(int[] a) {
+        String rv = "{";
+
+        for (int i = 0; i < a.length; i++) {
+            if (i != a.length - 1)
+                rv += a[i] + ", ";
+            else
+                rv += a[i];
+        }
+        rv += "}";
+        return rv;
+    }
+
+    public static int[] createBin(String binaryNumber) {
+        int[] rv = new int[8];
+
+        for(int i = 0; i < binaryNumber.length(); i++) {
+            if(binaryNumber.substring(i, i+1).compareTo("1") == 0)
+                rv[i] = 1;
+            else
+                rv[i] = 0;
+        }
+
+        return rv;
+    }
+
+    public static int intValue(int[] b) {
+        int rv = 0;
+        if(b[0] == 1)
+            rv -= 128;
+
+        for(int i = 1; i < b.length; i++)
+            if (b[i] == 1)
+                rv += 128 / (int)Math.pow(2, i);
+
+        return rv;
+    }
+
+    public static int[] doubleValue(int[] b) {
+        int exp = 0, man = 0;
+        int[] rv = new int[2];
+
+        if(b[0] == 1)
+            man -= 8;
+        if(b[4] == 1)
+            exp -= 8;
+
+        for(int i = 1; i < 4; i++) {
+            if (b[i] == 1)
+                man += 8 / (int)Math.pow(2, i);
+            if (b[i + 4] == 1)
+                exp += 8 / (int)Math.pow(2, i);
+
+        }
+        rv[0] = man;
+        rv[1] = exp;
+        return rv;
+    }
+
+    public static int[] intToBinary(int a) {
+        int[] rv = new int[8];
+        int store = a;
+
+        if (a < 0) {
+            rv[0] = 1;
+            store += 128;
+            for (int i = (rv.length - 1); i >= 0; i--) {
+                if (Math.abs(store) % 2 == 1)
+                    rv[i] = 1;
+                store /= 2;
+            }
+        }
+        else {
+            for (int i = (rv.length - 1); i >= 0; i--) {
+                if (Math.abs(store) % 2 == 1)
+                    rv[i] = 1;
+                store /= 2;
+            }
+        }
+        return rv;
+    }
+
+    public static int[] doubleToBinary(double a) {
+        
+    }
+}
