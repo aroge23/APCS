@@ -130,4 +130,51 @@ public class Main {
         	}
         }
     }
+    
+    public static int[] merge(int[] a, int[] b) {
+       int[] rv = new int[a.length + b.length];
+       int i = 0, aTick = 0, bTick = 0;
+       while (i < a.length && aTick < b.length) {
+           if (a[i] < b[aTick]) {
+               rv[bTick] = a[i];
+               i++;
+           }
+           else {
+               rv[bTick] = b[aTick];
+               aTick++;
+           }
+           bTick++;
+       }
+       while (i < a.length) {
+           rv[bTick] = a[i];
+           i++;
+           bTick++;
+       }
+       while (aTick < b.length) {
+           rv[bTick] = b[aTick];
+           aTick++;
+           bTick++;
+       }
+       return rv;
+   }
+
+    
+    public static int[] mergeSort(int[] a){
+    	if(a==null)
+		return null;
+	if(a.length <= 1)
+		return copy(a);
+	
+	int[] rv, left, right;
+	int midIndex = a.length / 2;
+	
+	left = subArray(a, 0, midIndex);
+	right = subArray(a, midIndex, a.length);
+	
+	left = mergeSort(left);
+	right = mergeSort(right);
+	
+	rv = merge(left, right);
+	return rv;
+	
 }
