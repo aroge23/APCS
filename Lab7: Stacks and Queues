@@ -1,0 +1,53 @@
+public class Main {
+	public static void main (String[] args){
+		int[] a = createStack();
+		push(a, 3);
+		push(a, 8);
+		System.out.println(prettyPrintStack(a));
+		System.out.println(dumpStack(a));
+		
+	}
+	
+	public static int[] createStack() {
+		int[] rv = new int[101];
+		rv[0] = 0;
+		return rv;
+	}
+	
+	public static void push(int[] stack, int data) {
+		stack[stack[0]+1] = data;
+		stack[0] += 1;
+	}
+	
+	public static int pop(int[] stack) {
+		int rv = stack[stack[0]];
+		stack[0] -= 1;
+		return rv;
+	}
+	
+	public static String prettyPrintStack(int[] stack) {
+		String rv = "[";
+		
+		for(int i = 1; i <= stack[0]; i++) {
+			if (i != stack[0])
+				rv += stack[i] + ",";
+			else
+				rv += stack[i];
+		}
+		
+		rv += "]";
+		return rv;
+	}
+	
+	public static String dumpStack(int[] stack) {
+		String rv = "{";
+		for(int i = 1; i < stack.length; i++) {
+			if (i != stack.length - 1)
+				rv += stack[i] + ",";
+			else
+				rv += stack[i];
+		}
+		rv += "}";
+		return rv;
+	}
+}
