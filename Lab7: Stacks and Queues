@@ -1,53 +1,133 @@
+package com.company;
+
 public class Main {
-	public static void main (String[] args){
-		int[] a = createStack();
-		push(a, 3);
-		push(a, 8);
-		System.out.println(prettyPrintStack(a));
-		System.out.println(dumpStack(a));
-		
-	}
-	
-	public static int[] createStack() {
-		int[] rv = new int[101];
-		rv[0] = 0;
-		return rv;
-	}
-	
-	public static void push(int[] stack, int data) {
-		stack[stack[0]+1] = data;
-		stack[0] += 1;
-	}
-	
-	public static int pop(int[] stack) {
-		int rv = stack[stack[0]];
-		stack[0] -= 1;
-		return rv;
-	}
-	
-	public static String prettyPrintStack(int[] stack) {
-		String rv = "[";
-		
-		for(int i = 1; i <= stack[0]; i++) {
-			if (i != stack[0])
-				rv += stack[i] + ",";
-			else
-				rv += stack[i];
-		}
-		
-		rv += "]";
-		return rv;
-	}
-	
-	public static String dumpStack(int[] stack) {
-		String rv = "{";
-		for(int i = 1; i < stack.length; i++) {
-			if (i != stack.length - 1)
-				rv += stack[i] + ",";
-			else
-				rv += stack[i];
-		}
-		rv += "}";
-		return rv;
-	}
+    public static void main (String[] args){
+        int[] myStack = createStack();
+        for(int i=10; i>0; i--)
+            push(myStack,i);
+        System.out.println("You should print [10,9,8,7,6,5,4,3,2,1]");
+        System.out.println(prettyPrintStack(myStack));
+        System.out.println("This should print 1\n2\n3\n4\n5\n6\n7\n8\n9\n10");
+        for(int i=10; i>0; i--)
+            System.out.println(pop(myStack));
+        System.out.println("If you add too many elements into the stack, you should print out" +
+                "an error");
+        for(int i=0; i<110; i++)
+            push(myStack, i);
+
+        //Task 4
+        int[] parkingLot = createQueue();
+        for (int i = 0; i < 10; i++)
+            enqueue(parkingLot, i);
+        System.out.println("This would not be an ideal use because you would want to return the most recent car. With a queue, you will be returning" +
+                "\n the first car entered in the valet, which will not work for a single car lane. Instead you should use a stack, which " +
+                "\n returns the last stored data value, or in this case, last stored car");
+
+    }
+
+    public static int[] createStack() {
+        int[] rv = new int[101];
+        rv[0] = 0;
+        return rv;
+    }
+
+    public static void push(int[] stack, int data) {
+        stack[stack[0]+1] = data;
+        stack[0] += 1;
+    }
+
+    public static int pop(int[] stack) {
+        int rv = stack[stack[0]];
+        stack[0] -= 1;
+        return rv;
+    }
+
+    public static String prettyPrintStack(int[] stack) {
+        String rv = "[";
+
+        for(int i = 1; i <= stack[0]; i++) {
+            if (i != stack[0])
+                rv += stack[i] + ",";
+            else
+                rv += stack[i];
+        }
+
+        rv += "]";
+        return rv;
+    }
+
+    public static String dumpStack(int[] stack) {
+        String rv = "{";
+        for(int i = 1; i < stack.length; i++) {
+            if (i != stack.length - 1)
+                rv += stack[i] + ",";
+            else
+                rv += stack[i];
+        }
+        rv += "}";
+        return rv;
+    }
+
+    public static int[] createQueue() {
+        int[] rv = new int[101];
+        return rv;
+    }
+
+    public static void enqueue(int[] queue, int data) {
+        queue[queue[0]+1] = data;
+        queue[0] += 1;
+    }
+
+    public static int dequeue(int[] queue) {
+        int rv = queue[1];
+        int swap = 0;
+        for(int i = queue[0]; i > 1; i--) {
+            queue[i-1] = queue[i];
+        }
+        queue[0] -= 1;
+        return rv;
+    }
+
+    public static String prettyPrintQueue(int[] queue) {
+        String rv = "[";
+
+        for(int i = 1; i <= queue[0]; i++) {
+            if (i != queue[0])
+                rv += queue[i] + ",";
+            else
+                rv += queue[i];
+        }
+
+        rv += "]";
+        return rv;
+    }
+
+    public static String dumpQueue(int[] queue) {
+        String rv = "{";
+        for(int i = 1; i < queue.length; i++) {
+            if (i != queue.length - 1)
+                rv += queue[i] + ",";
+            else
+                rv += queue[i];
+        }
+        rv += "}";
+        return rv;
+    }
 }
+
+
+/* Task 3
+Queue 9, 8, 7, 6, 5, 4, 3 in order
+3rd dequeue is 7
+ */
+
+/* Task 5
+Example of stack is when you make pancakes, the most recent pancake will always be on top, which is the one that you will be
+picking if you want to eat a pancake. The Last pancake is always the first pancake made.
+ */
+
+/* Task 6
+Example of a queue is is waiting list. When you sign up, for example, for a tutoring club, your name will be in the front of the
+list. It would be unfair if the people who signed up last get first priority, so the first people in the queue gets the top priority,
+hence using a queue instead of a stack.
+ */
