@@ -1,0 +1,11 @@
+package com.company;
+
+public class CreditCardAccount {
+    String name;
+    String creditCardCompany;
+    String bank;
+    int accountNumber;
+    int expiration;
+    int securityCode;
+    //5524 5230 510
+}
