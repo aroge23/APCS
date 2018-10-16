@@ -1,0 +1,41 @@
+package com.company;
+
+public class Main {
+    public static void main(String[] args) {
+        //Money test code
+        int[] moneyArray = new int[2];
+        moneyArray[0] = 1;
+        moneyArray[1] = 23;
+        Money m = new Money();
+        m.dollars = 1;
+        m.cents = 23;
+        m.currency = " USD";
+        System.out.println("I have " + m.dollars + m.currency);
+
+        Complex c = new Complex();
+        //2 + 3i
+        c.a = 2;
+        c.b = 3;
+        System.out.println(c.a + " + " + c.b + "i");
+
+        //DateClass test code
+        DateClass d = new DateClass();
+        d.monthName = "October";
+        d.monthNumber = 11;
+        d.day = 16;
+        d.year = 2018;
+        System.out.println("Today is " + d.monthName + " " + d.day + ", " + d.year);
+
+        //CreditCardAccount test code
+        CreditCardAccount cc= new CreditCardAccount();
+        cc.name = "Anay *obscured* Roge";
+        cc.bank = "Bank of America";
+        cc.creditCardCompany = "MasterCard";
+        cc.accountNumber = 12345678;
+        cc.securityCode = 912;
+        cc.expiration = 125;
+        System.out.println("Credit Card Report: \nName: " + cc.name + "\nBank: " + cc.bank + "\nAccount: " +
+                cc.accountNumber);
+    }
+
+}
