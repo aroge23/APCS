@@ -5,4 +5,97 @@ public class Money {
     int cents;
     String currency;
 
+    //Task 2
+    public int getDollars() {
+        return dollars;
+    }
+    public void setDollars(int newDollars) {
+        dollars = newDollars;
+    }
+
+    public int getCents() {
+        return cents;
+    }
+    public void setCents(int newCents) {
+        if(newCents > 99) {
+            newCents -= 100;
+            dollars += 1;
+        }
+        cents = newCents;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+    public void setCurrency(String newCurrency) {
+        currency = newCurrency;
+    }
+
+    public void add(Money m) {
+        int d = dollars + m.getDollars();
+        int c = cents + m.getCents();
+
+        dollars = d;
+        cents = c;
+    }
+
+    //Task 1
+    public Money() {
+    }
+    public Money(int d, int c) {
+        while (c > 99) {
+            c -= 100;
+            d += 1;
+        }
+        cents = c;
+        dollars = d;
+    }
+    public Money(double a) {
+        cents = ((int)((a % 1) * 100));
+        dollars = (int)(a / 1);
+    }
+
+    //Task 3
+    public boolean isGreaterThan(Money m) {
+        if (dollars > m.dollars)
+            return true;
+        else if( dollars == m.dollars && cents > m.cents)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isLessThan(Money m) {
+        if (dollars < m.dollars)
+            return true;
+        else if( dollars == m.dollars && cents < m.cents)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean bigMoney() {
+        if (dollars > 100)
+            return true;
+        else if( dollars == 100 && cents > 0)
+            return true;
+        else
+            return false;
+    }
+
+    //Task 4
+    public void sub(Money m) {
+        int d = dollars - m.getDollars();
+        int c = cents - m.getCents();
+
+        if (c < 0) {
+            c += 100;
+            d -= 1;
+        }
+        if (d < 0)
+            System.out.println("Error. You have less than $0");
+        dollars = d;
+        cents = c;
+    }
+
 }
