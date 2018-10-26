@@ -1,17 +1,17 @@
 package com.company;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         //Money test code
-        int[] moneyArray = new int[2];
-        moneyArray[0] = 1;
-        moneyArray[1] = 23;
-        Money m = new Money();
-        m.dollars = 1;
-        m.cents = 23;
-        m.currency = " USD";
-        System.out.println("I have " + m.dollars + m.currency);
+        Money m = new Money(), n = new Money();
+        m.setDollars(5);
+        m.setCents(10);
+        n.setDollars(6);
+        n.setCents(11);
+        m.add(n);
+        System.out.println(m.getDollars() + "." + m.getCents());
 
+        //Complex test code
         Complex c = new Complex();
         //2 + 3i
         c.a = 2;
@@ -27,7 +27,7 @@ public class Main {
         System.out.println("Today is " + d.monthName + " " + d.day + ", " + d.year);
 
         //CreditCardAccount test code
-        CreditCardAccount cc= new CreditCardAccount();
+        CreditCardAccount cc = new CreditCardAccount();
         cc.name = "Anay *obscured* Roge";
         cc.bank = "Bank of America";
         cc.creditCardCompany = "MasterCard";
@@ -36,6 +36,111 @@ public class Main {
         cc.expiration = 125;
         System.out.println("Credit Card Report: \nName: " + cc.name + "\nBank: " + cc.bank + "\nAccount: " +
                 cc.accountNumber);
+
+        //Point test code
+        Point p = new Point();
+        p.x = 2;
+        p.y = 3;
+
+        //Circle test code
+        Circle ci = new Circle();
+        ci.rad = 3;
+//        Point center = new Point();
+//        center.x = 4;
+//        center.y = 5;
+//        ci.center = center;
+        ci.center = new Point();
+        ci.center.x = 4;
+        ci.center.y = 5;
+
+        //Circle radius 2, center 00:
+        Circle c1 = new Circle();
+        c1.rad = 2;
+        c1.center = new Point();
+        c1.center.x = 0;
+        c1.center.y = 0;
+
+        //Circle radius 1, center 00:
+        Circle c2 = new Circle();
+        c2.rad = 1;
+        c2.center = new Point();
+        c2.center.x = 0;
+        c2.center.y = 0;
+
+        //Point test code
+        Point p1 = new Point();
+//        p1.x = 4;
+        p1.setX(4);
+//        System.out.println("X coordinate is " + p1.x);
+        System.out.println("X coordinate is " + p1.getX());
+
+        //Deck test code
+        Deck a = new Deck();
+        for (int i = 1; i < 53; i++) {
+            a.d[i - 1] = new Card();
+            if (i%13 == 0)
+                a.d[i - 1].setFace(13);
+            else
+                a.d[i - 1].setFace(i % 13);
+            if (i <= 13)
+                a.d[i - 1].setSuit("Spades");
+            else if (i <= 26)
+                a.d[i-1].setSuit("Clubs");
+            else if(i <= 39)
+                a.d[i-1].setSuit("Hearts");
+            else
+                a.d[i-1].setSuit("Diamonds");
+        }
+        System.out.println("Your card is a " + a.d[51].getFace() + " of " + a.d[51].getSuit());
+
+        //LineSegment test code
+        LineSegment line = new LineSegment();
+        line.start = new Point();
+        line.start.x = 3;
+        line.start.y = 2;
+
+        line.end = new Point();
+        line.end.x = 6;
+        line.end.y = 8;
+        System.out.println("The slope of the two points is " + line.slope());
+
+        //StudentRecord test code
+        StudentRecord student = new StudentRecord();
+        student.name = "Anay Roge";
+        student.idN = 183352;
+
+        //Fraction test code
+        Fraction fraction = new Fraction();
+        fraction.num = 5;
+        fraction.denom = 9;
+        System.out.println("Your fraction is " + fraction.num + "/" + fraction.denom);
+
+        //Card test code
+        Card card = new Card();
+        card.setFace(10);
+        card.setSuit("Spades");
+
+        System.out.println("You have a " + card.getFace() + " of " + card.getSuit());
+//----------------------------------------------------------------------------------------------------------------------
+    }
+
+    public static void main(String[] args) {
+        Money a = new Money(10, 30);
+        Money b = new Money(1, 23);
+        Money c = new Money(0, 1);
+
+        Money d = new Money();
+
+        System.out.println(a.toEnglish());
+        System.out.println(b.toStr());
+
+        //Task 3
+        Money[] ms = new Money[9];
+        for(int i = 1; i <= 9; i++) {
+            ms[i-1] = new Money(i * 10, i * 11);
+        }
+        for(int i = 0; i < 9; i++)
+            System.out.println(ms[i].toStr());
     }
 
 }
