@@ -1,0 +1,58 @@
+public boolean isLastDayOfMonth() {
+  boolean rv = false;
+  int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  int lastDay = monthDay[getMonthNumber()];
+  if(getDay() == lastDay)
+    rv = true;
+  return rv;
+}
+
+public boolean isBefore(DateClass d) {
+  boolean rv = false;
+  if(d.getYear() < getYear())
+    rv = true;
+  else if(d.getMonthNumber() < getMonthNumber())
+    rv = true;
+  else if(d.getDay() < getDay())
+    rv = true;
+  return rv;
+}
+
+public boolean isAfter(DateClass d) {
+  boolean rv = false;
+  if(d.getYear() > getYear())
+    rv = true;
+  else if(d.getMonthNumber() > getMonthNumber())
+    rv = true;
+  else if(d.getDay() > getDay())
+    rv = true;
+  return rv;
+}
+
+public boolean isSameDate(DateClass d) {
+  boolean rv = false;
+  if(d.getYear() == getYear() && d.getDay == getDay && d.getMonthNumber == getMonthNumber)
+    rv = true;
+  return rv;
+}
+
+public DateClass nextDate() {
+  int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  String[] months = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+  DateClass rv = new DateClass();
+  
+  //Put conditional of year
+    if(getDay() < monthDay[getMonthNumber()]) {
+      rv.setDay(getDay() + 1);
+      rv.setMonthNumber(getMonthNumber());
+      rv.setYear(getYear());
+      rv.setMonthName(months[getMonthNumber()]);
+    } else {
+      rv.setDay(1);
+      rv.setMonthNumber(getMonthNumber() + 1);
+      rv.setYear(getYear());
+      rv.setMonthName(months[getMonthNumber() + 1]);
+    }
+
+
+
