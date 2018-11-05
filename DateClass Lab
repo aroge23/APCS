@@ -56,14 +56,19 @@ public class DateClass {
     }
 
     public DateClass(String newMonthName, int newDay) {
+        String[] months = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         setMonthName(newMonthName);
         setDay(newDay);
+        setYear(0);
+        setMonthName(months[getMonthNumber()]);
     }
 
     public DateClass(int mmddyyyy) {
+        String[] months = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         setMonthNumber(mmddyyyy / 1000000);
-        setDay((mmddyyyy / 1000000) % 10000);
+        setDay((mmddyyyy % 1000000) / 10000);
         setYear(mmddyyyy % 10000);
+        setMonthName(months[getMonthNumber()]);
     }
 
     //Methods
@@ -175,7 +180,7 @@ public class DateClass {
         String[] months = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int rv = 0;
 
-        if (d.getYear() != getYear()) {
+        if (d.getYear() == getYear()) {
             if (d.getMonthNumber() != getMonthNumber()) {
                 if (d.getMonthNumber() < getMonthNumber()) {
                     for (int i = d.getMonthNumber(); i <= getMonthNumber(); i++)
@@ -215,5 +220,72 @@ public class DateClass {
                 rv -= d.getDay();
             }
         }
+        return rv;
     }
+
+    public int dayOfYear() {
+        int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int rv = 0;
+
+        for (int i = 1; i < getMonthNumber(); i++)
+            rv += monthDay[i];
+        rv += getDay();
+
+        return rv;
+    }
+
+    public int daysLeftInMonth() {
+        int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+        return (monthDay[getMonthNumber()] - getDay());
+    }
+
+    public int daysLeftInYear() {
+        int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int rv = 0;
+
+        for (int i = getMonthNumber(); i < monthDay.length; i++)
+            rv += monthDay[i];
+        rv -= getDay();
+
+        return rv;
+    }
+
+    public int daysLeftInDecade() {
+        int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int rv = 0;
+
+        for (int i = getYear(); i < getYear() + 10; i++) {
+            while (i % 10 != 0)
+                for (int j = 1; j < monthDay.length; j++)
+                    rv += monthDay[j];
+            if (i % 10 == 0)
+                break;
+        }
+        for(int i = 1; i < getMonthNumber(); i++)
+            rv -= monthDay[i];
+        rv -= getDay();
+
+        return rv;
+    }
+
+    public int daysLeftInCentury() {
+        int[] monthDay = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        int rv = 0;
+
+        for (int i = getYear(); i < getYear() + 100; i++) {
+            while (i % 100 != 0)
+                for (int j = 1; j < monthDay.length; j++)
+                    rv += monthDay[j];
+            if (i % 100 == 0)
+                break;
+        }
+        for(int i = 1; i < getMonthNumber(); i++)
+            rv -= monthDay[i];
+        rv -= getDay();
+
+        return rv;
+    }
+
+
 }
