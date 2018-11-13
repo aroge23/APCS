@@ -1,0 +1,114 @@
+package com.company;
+
+public class BankAccount {
+    //Class Variables
+    private int numberOfTransactions = 0;
+    private int numberOfBankAccounts = 0;
+
+    private String firstName;
+    private String lastName;
+    private String middleInit;
+    private Money balance;
+    private String bankName;
+
+    //Getters
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public String getMiddleInit() {
+        return middleInit;
+    }
+    public Money getBalance() {
+        return balance;
+    }
+    public String getBankName() {
+        return bankName;
+    }
+    public int getNumberOfTransactions() {
+        return numberOfTransactions;
+    }
+    public int getNumberOfBankAccounts() {
+        return numberOfBankAccounts;
+    }
+
+    //Setters for Strings only
+    public void setFirstName(String newFirstName) {
+        firstName = newFirstName;
+    }
+    public void setMiddleInit(String newMiddleInit) {
+        middleInit = newMiddleInit;
+    }
+    public void setLastName(String newLastName) {
+        lastName = newLastName;
+    }
+    public void setBankName(String newBankName) {
+        bankName = newBankName;
+    }
+
+    public void deposit(Money depositAmount) {
+        numberOfTransactions ++;
+        balance.add(depositAmount);
+    }
+    public void withDraw(Money withdrawAmaount) {
+        numberOfTransactions++;
+        balance.sub(withdrawAmaount);
+    }
+
+    //Constructors
+    public BankAccount() {
+        numberOfBankAccounts++;
+        Money b = new Money(balance.getDollars() + 100, balance.getCents());
+        if (numberOfBankAccounts == 23)
+            balance = b;
+    }
+    public BankAccount(String first, String last, String middle, Money b, String bName) {
+        numberOfBankAccounts++;
+        setFirstName(first);
+        setBankName(bName);
+        setLastName(last);
+        setMiddleInit(middle);
+        Money c = new Money(b.getDollars() + 100, b.getCents());
+        if (numberOfBankAccounts == 23)
+            balance = c;
+        else
+            balance = b;
+    }
+
+    public BankAccount(String name, Money b, String bName) {
+        numberOfBankAccounts++;
+        for(int i = 0; i < name.length(); i++) {
+            if (name.substring(i, i+1).compareTo(" ") == 0) {
+                setFirstName(name.substring(0, i));
+                setMiddleInit(name.substring(i+1, i+2));
+                setLastName(name.substring(i+4));
+                break;
+            }
+        }
+        Money c = new Money(b.getDollars() + 100, b.getCents());
+        if (numberOfBankAccounts == 23)
+            balance = c;
+        else
+            balance = b;
+        setBankName(bName);
+    }
+
+    public String toStr() {
+        String rv = "";
+        rv += getBankName();
+        rv += " bank account for ";
+        rv += fullName() + ": ";
+        rv += "$" + getBalance();
+        return rv;
+    }
+
+    public String fullName() {
+        return getFirstName() + " " + getMiddleInit() + ". " + getLastName();
+    }
+
+
+
+
+}
