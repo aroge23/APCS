@@ -1,0 +1,55 @@
+package com.company;
+
+public class Main {
+    public static void main(String[] args) {
+        //Task 1
+        Money anayB = new Money(0, 00);
+        Money kimB = new Money(0, 00);
+        Money friendB = new Money(0, 00);
+        BankAccount bankAnay = new BankAccount("Anay M. Roge", anayB, "Bank of America");
+        BankAccount bankKim = new BankAccount("Al C. Kim", kimB, "Bank of the West");
+        BankAccount bankFriend = new BankAccount("Friend L. Li", friendB, "Chase");
+
+        //Task 2
+        for(int i = 0; i <= 100; i++) {
+            Money deposit = new Money(i, 00);
+            if(i % 3 == 0)
+                bankAnay.deposit(deposit);
+            else if (i % 3 == 1)
+                bankKim.deposit(deposit);
+            else
+                bankFriend.deposit(deposit);
+        }
+        System.out.println("--------------------Task 2--------------------");
+        System.out.println(bankAnay.getBalance().toStr());
+        System.out.println(bankKim.getBalance().toStr());
+        System.out.println(bankFriend.getBalance().toStr());
+
+        //Task 3
+        Money withdrawal = new Money(20, 00);
+        Money deposit = new Money(withdrawal.getDollars()/2, withdrawal.getCents()/2);
+        bankAnay.withDraw(withdrawal);
+        bankKim.deposit(deposit);
+        bankFriend.deposit(deposit);
+        System.out.println("--------------------Task 3--------------------");
+        System.out.println(bankAnay.getBalance().toStr());
+        System.out.println(bankKim.getBalance().toStr());
+        System.out.println(bankFriend.getBalance().toStr());
+
+        //Task 4
+        String[] letters = {"A.", "B.", "C.", "D.", "E.", "F.", "G.", "H.", "I.", "J.", "K.", "L.", "M.", "N.", "O.", "P.",
+        "Q.", "R.", "S.", "T.", "U.", "V.", "W.", "X.", "Y.", "Z."};
+        BankAccount guy[] = new BankAccount[26];
+        Money init = new Money(10, 00);
+        for(int i = 0; i <= 25; i++) {
+            String name = "Bob " + letters[i] + " Ramakrishnan";
+            guy[i] = new BankAccount(name, init, "Bank of America");
+        }
+        System.out.println("--------------------Task 4--------------------");
+        System.out.println(guy[22].getBalance().toStr());
+        System.out.println(guy[23].getBalance().toStr());
+        System.out.println(guy[24].getBalance().toStr());
+    }
+
+
+}
