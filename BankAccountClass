@@ -1,0 +1,95 @@
+package com.company;
+
+public class BankAccountClass{
+    // Class (static) variables
+    private static int numberOfTransactions = 0;
+    private static int numberOfBankAccounts = 0;
+    private static int nextAccountNumber = 10000000;
+
+    // Instance (nonstatic) variables
+    // Mid initial no period
+    private String firstName, lastName;
+    // All BankAccounts will start off with $0.00
+    private Money balance = new Money(0,0);
+    private String bankName;
+    // 8 digit acct numbers, not <8 digits. ex, 1000 0000
+    private int accountNumber;
+
+    // Constructors
+    public BankAccountClass(){
+        firstName = "";
+        lastName = "";
+        // Not needed since every object starts with $0. See declaration.
+        // balance = new Money(0,0);
+        bankName = "";
+        numberOfBankAccounts++;
+        if(numberOfBankAccounts==23){
+            // Notice that this counts as a transaction
+            System.out.println("Congrats 23rd acct bonus");
+            deposit(new Money(100,0));
+        }
+        accountNumber = nextAccountNumber;
+        nextAccountNumber++;
+    }
+    public BankAccountClass(String first, String last,
+                            Money b, String bName){
+        firstName = first;
+        lastName = last;
+        // balance = b;
+        deposit(b);
+        bankName = bName;
+        numberOfBankAccounts++;
+        if(numberOfBankAccounts==23){
+            // Notice this counts as a transaction
+            System.out.println("Congrats 23rd acct bonus");
+            deposit(new Money(100,0));
+        }
+        accountNumber = nextAccountNumber;
+        nextAccountNumber++;
+    }
+
+    // Getters/Setters
+    public static int getNumberOfTransactions(){
+        return numberOfTransactions;
+    }
+    public static int getNumberOfBankAccounts(){
+        return numberOfBankAccounts;
+    }
+    public String getFirstName(){
+        return firstName;
+    }
+    public void setFirstName(String first){
+        firstName = first;
+    }
+    public String getLastName(){
+        return lastName;
+    }
+    public void setLastName(String last){
+        lastName = last;
+    }
+    // No setBalance()
+    public Money getBalance(){
+        return balance;
+    }
+    public String getBankName(){
+        return bankName;
+    }
+    public void setBankName(String bName){
+        bankName = bName;
+    }
+
+    // Other Methods
+    public void deposit(Money depositAmount){
+        balance.add(depositAmount);
+        numberOfTransactions++;
+    }
+    public void withdraw(Money withdrawlAmount){
+        balance.sub(withdrawlAmount);
+        numberOfTransactions++;
+    }
+    //"Bank of America bank account for Bob Cheung: $10.02"
+    public String toStr(){
+        return bankName + " bank account for " + firstName + " " +
+                lastName + ": " + balance.toStr();
+    }
+}
