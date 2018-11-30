@@ -180,9 +180,9 @@ public class Money {
         String rv = "";
 
         String[] onesToTeens = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
-        "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+                "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 
-        String[] tens = {"", "Tent", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+        String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
         int d = dollars; //729
 
         if(isNegative()) {
@@ -404,6 +404,14 @@ public class Money {
 //
 //        returnValue = returnValue + "cents";
 //        return returnValue;
+    }
+
+    public static int round(double a) {
+        return (int) (a + 0.5);
+    }
+
+    public Money product(double mult) {
+        return new Money(0, round(mult * (dollars*100 + cents)));
     }
 
 }//end Money class
