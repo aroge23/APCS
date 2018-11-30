@@ -1,8 +1,0 @@
-package com.company;
-
-public class DateClass {
-    String monthName;
-    int monthNumber;
-    int day;
-    int year;
-}
