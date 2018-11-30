@@ -1,7 +1,0 @@
-package com.company;
-
-public class Complex {
-    //c = a + bi
-    double a;
-    double b;
-}
