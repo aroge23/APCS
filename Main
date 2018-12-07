@@ -1,0 +1,33 @@
+package com.company;
+
+public class Main {
+    public static void main(String args[]) {
+        Car bugatti = new Car();
+        bugatti.setNumOfDoors(2);
+        bugatti.setNumOfSeats(2);
+        bugatti.setMotorType("16-Cylinder Turbo");
+
+        Airplane delta = new Airplane();
+        delta.setFlight("Delta Air Lines DL573");
+        delta.setCurrentPosition(new Point(118.4085, 33.9416));
+        delta.setTopSpeed(800);
+        delta.setDestination(new Point(37.769193, 121.902357));
+        delta.setNumOfSeats(70);
+        delta.setCurrentNumOfPass(65);
+
+        Train tren = new Train();
+        tren.setNumBoxCars(16);
+        tren.setCurrentNumOfPass(1324);
+        tren.setCurrentPosition(new Point(118.4085, 33.9416));
+        tren.setDestination(new Point(37.769193, 121.902357));
+        delta.setTopSpeed(200);
+        tren.setNumOfSeats(1324);
+
+        Vehicle ATV = new Vehicle();
+        ATV.setCurrentNumOfPass(1);
+        ATV.setNumOfSeats(2);
+        ATV.setCurrentPosition(new Point(65.2164, 64.2489));
+        ATV.setDestination(new Point(37.769193, 121.902357));
+        ATV.setTopSpeed(30);
+    }
+}
