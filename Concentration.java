@@ -4,12 +4,13 @@ import java.util.Scanner;
 public class Concentration {
     // newBoard() should return a new Board that is already set up to play concentration.
     // IE, make, shuffle, deal a deck. Etc.
-    public static Board newBoard(){
-        Board b = new Board(8, 8);
+    public static Board newBoard(int rows, int columns){
+        Board b = new Board(rows, columns);
         Deck d = new Deck();
         d.shuffle();
 
         b.fillBoard(d);
+        b.hide();
         b.printBoard();
         return b;
 
@@ -21,6 +22,47 @@ public class Concentration {
     // If player matches, they get to go again.
     public static void play() {
         // Complete this code.
+        Scanner s = new Scanner(System.in);
+        System.out.println("How many rows would you like?");
+        int userRow = s.nextInt();
+        System.out.println("How many columns would you like?");
+        int userCol = s.nextInt();
+        Board board = newBoard(userRow, userCol);
+        boolean playerA, playerB;
+        int player = 0;
+        int scoreA = 0, scoreB = 0;
+
+        while (board.openSpots() <= 56) {
+            if (player == 0) {
+                //player 1
+                System.out.println("What row would Player 1 like to pick");
+                int row = s.nextInt();
+                System.out.println("What column would Player 1 like to pick");
+                int column = s.nextInt();
+
+                board.unhide(row, column);
+                board.printBoard();
+                System.out.println(board.printScore(scoreA, scoreB));
+
+                //end player 1
+                player++;
+            }
+            else {
+                //player 2
+                System.out.println("What row would Player 2 like to pick");
+                int row = s.nextInt();
+                System.out.println("What column would Player 2 like to pick");
+                int column = s.nextInt();
+
+                board.unhide(row, column);
+                board.printBoard();
+                System.out.println(board.printScore(scoreA, scoreB));
+
+                //end player 2
+                player--;
+            }
+        }
+
 
     } // end play()
     public static void pressEnterToContinue(){
@@ -32,8 +74,8 @@ public class Concentration {
 
     public static void main(String[] args) {
         Concentration a = new Concentration();
-
-        a.newBoard();
+        a.play();
     }
+
 
 }
