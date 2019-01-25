@@ -35,8 +35,5 @@ public class Concentration {
 
         a.newBoard();
     }
-    //new edit\
-    //new comment
-    //nfoinsdfo
 
 }
