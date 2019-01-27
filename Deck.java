@@ -46,19 +46,5 @@ public class Deck {
         nextCard++;
         return rv;
     }
-
-    public static void main(String args[]) {
-        Card[] cards = new Card[52];
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 13; j++) {
-                cards[j + (i * 13)] = new Card(j + 1, i+1);
-            }
-        }
-
-        Deck a = new Deck();
-        Deck b = new Deck();
-        a.shuffle();
-        b.print();
-    }
 }
 
