@@ -30,7 +30,7 @@ public class Concentration {
         System.out.println("How many columns would you like?");
         int userCol = s.nextInt();
         Board board = newBoard(userRow, userCol);
-        boolean playerA, playerB, firstRound = true;
+        boolean firstRound = true;
         int player = 0;
         int scoreA = 0, scoreB = 0;
 
@@ -38,7 +38,7 @@ public class Concentration {
             while (board.openSpots() <= (userRow * userCol)) {
                 if (player == 0) {
                     //player 1
-                    if(firstRound == false)
+                    if(!firstRound)
                         board.printBoard();
                     System.out.println("What row would Player 1 like to pick first");
                     int row = s.nextInt();
@@ -73,7 +73,7 @@ public class Concentration {
                     firstRound = false;
                     player++;
                 } else {
-                    //player 2 
+                    //player 2
                     board.printBoard();
                     System.out.println("What row would Player 2 like to pick first");
                     int row = s.nextInt();
@@ -123,6 +123,5 @@ public class Concentration {
         Concentration a = new Concentration();
         a.play();
     }
-
 
 }
