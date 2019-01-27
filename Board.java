@@ -94,5 +94,6 @@ public class Board {
     public String printScore(int a, int b) {
         return "Player 1 score: " + a + "\nPlayer 2 score: " + b;
     }
+
 }
 
