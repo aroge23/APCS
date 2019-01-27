@@ -73,7 +73,7 @@ public class Concentration {
                     firstRound = false;
                     player++;
                 } else {
-                    //player 2
+                    //player 2 
                     board.printBoard();
                     System.out.println("What row would Player 2 like to pick first");
                     int row = s.nextInt();
