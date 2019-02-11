@@ -1,0 +1,5 @@
+package com.company;
+
+public interface ToString2 {
+    public String toString2();
+}
