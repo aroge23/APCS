@@ -1,0 +1,80 @@
+package com.company;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+import com.company.UserInput;
+import java.lang.Math;
+
+public class Main {
+    public static void main(String args[]) {
+        //Task 1
+        ArrayList<Double> a = new ArrayList<>();
+        a.add(1.0);
+        a.add(1, 3.0);
+        a.get(1);
+        a.set(1, 5.0);
+        a.remove(0);
+        System.out.println(a.size());
+
+        //Task 3
+        QueueAL<String> b = new QueueAL<>();
+        b.enqueue(new String("Al"));
+        b.enqueue("Bob");
+        b.enqueue("Carl");
+
+        System.out.println(b.dequeue());
+        System.out.println(b.dequeue());
+        System.out.println(b.dequeue());
+
+
+        //Task 4
+        ArrayList<ArrayList<Integer>> c = new ArrayList<>();
+        for(int i = 1; i < 4; i++) {
+            c.add(new ArrayList<>(i));
+            for(int j = 1; j < c.get(i).size() + 1; j++) {
+                c.get(i).add(j);
+            }
+        }
+
+
+        //Task 5
+        ArrayList<QueueAL<Rectangle>> d = new ArrayList<>();
+        for(int i = 0; i < 100; i++) {
+            d.add(new QueueAL<>(2));
+            if(i == 0)
+                d.get(i).enqueue(new Rectangle(1, 0));
+            else
+                d.get(i).enqueue(new Rectangle(1, i + 1));
+        }
+
+
+        //Task 6
+        ArrayList<QueueAL<Circle>> e = new ArrayList<>();
+        e.add(0, new QueueAL<>());
+        e.get(0).enqueue(new Circle(1));
+        e.add(1, new QueueAL<>());
+        e.get(1).enqueue(new Circle(1));
+
+        e.add(2, new QueueAL<>());
+        e.get(2).enqueue(new Circle(1));
+        e.get(2).enqueue(new Circle(1));
+        e.get(2).enqueue(new Circle(2));
+
+
+        for(int i = 0; i < 50; i++) {
+            e.add(new QueueAL<>(3));
+            for(int j = 0; j < 3; j++) {
+                int r3 = (int)(e.get(i+2).dequeue().getRad());
+                int r2 = (int)(e.get(i+2).dequeue().getRad());
+                int r1 = (int)(e.get(i+2).dequeue().getRad());
+                e.get(i+2).enqueue(new Circle(r1));
+                e.get(i+2).enqueue(new Circle(r2));
+                e.get(i+2).enqueue(new Circle(r3));
+
+                e.get(i+3).enqueue(new Circle(r1));
+                e.get(i+3).enqueue(new Circle(r2));
+                e.get(i+3).enqueue(new Circle(r1 + r2));
+            }
+        }
+    }
+}
