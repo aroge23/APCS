@@ -1,0 +1,83 @@
+package com.company;
+
+public class ListA<E> implements List<E> {
+    //When ListA is empty, make underlydingData be null.
+    private Object[] underlyingData = null;
+
+    public int size() {
+        if(underlyingData == null)
+            return 0;
+        return underlyingData.length;
+    }
+
+    //add() will add obj to the end of the list
+    public boolean add(E obj) {
+        if(underlyingData == null) {
+            underlyingData = new Object[1];
+            underlyingData[0] = obj;
+            return true;
+        }
+
+        //{0, 1, 2, 3} => {?, ?, ?, ?]
+        Object[] oldData = underlyingData;
+        underlyingData = new Object[underlyingData.length + 1];
+        //Copy old data
+        for (int i = 0; i < oldData.length; i++)
+            underlyingData[i] = oldData[i];
+        //Insert new data
+        underlyingData[underlyingData.length - 1] = obj;
+        return true;
+    }
+
+    //add(3, 5) to [0, 1, 2, 3, 4] => [0, 1, 2, 5, 3, 4]
+    public void add(int index, E obj) {
+        if(underlyingData == null) {
+            underlyingData = new Object[1];
+            underlyingData[0] = obj;
+        }
+
+        Object[] oldData = underlyingData;
+        underlyingData = new Object[underlyingData.length + 1];
+        //Before new value
+        for (int i = 0; i < index; i++)
+            underlyingData[i] = oldData[i];
+        //New value
+        underlyingData[index] = obj;
+        //After new value
+        for (int i = index; i < oldData.length; i++)
+            underlyingData[i+1] = oldData[i];
+    }
+
+    public E get(int index) {
+        if (underlyingData == null)
+            return null;
+
+        return (E) underlyingData[index];
+    }
+
+    public E set(int index, E obj) {
+        if (underlyingData == null)
+            return null;
+
+        Object oldData = underlyingData[index];
+        underlyingData[index] = obj;
+        return (E) oldData;
+    }
+
+    public E remove(int index) {
+        if (underlyingData == null)
+            return null;
+
+        Object[] oldData = underlyingData;
+        underlyingData = new Object[underlyingData.length - 1];
+        //Before removed value
+        for (int i = 0; i < index; i++)
+            underlyingData[i] = oldData[i];
+        //After removed value
+        for (int i = index + 1; i < oldData.length; i++)
+            underlyingData[i - 1] = oldData[i];
+
+        return (E) underlyingData[index];
+    }
+
+}
