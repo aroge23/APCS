@@ -1,0 +1,93 @@
+package com.company;
+
+import java.util.ArrayList;
+
+public class LinkedList<E> implements List<E>, Printable{
+
+    private Node<E> head;
+
+    @Override
+    public int size() {
+        int rv = 0;
+        Node<E> nn = head;
+        while (nn.getNext() != null) {
+            rv += 1;
+            nn = nn.getNext();
+        }
+
+        return rv;
+    }
+
+    @Override
+    public void add(int index, E obj) {
+        Node<E> nn = head;
+
+        if (head == null) {
+            head = new Node<E>(obj, null);
+        }
+
+        for (int i = 0; i < index-1; i++) {
+            nn = nn.getNext();
+        }
+        nn.setNext(new Node<E>(obj, nn.getNext()));
+    }
+
+    @Override
+    public boolean add(E obj) {
+        if (head == null) {
+            head = new Node<E>(obj, null);
+            return true;
+        }
+        else {
+            Node<E> ln = head;
+            while(ln.getNext() != null)
+                ln = ln.getNext();
+            ln.setNext(new Node<E>(obj, null));
+            return true;
+        }
+    }
+
+    @Override
+    public E get(int index) {
+        Node<E> nn = head;
+        for(int i = 0; i < index; i++)
+            nn = nn.getNext();
+
+        return nn.getData();
+    }
+
+    @Override
+    public E set(int index, E obj) {
+        Node<E> nn = head;
+        for(int i = 0; i < index; i++)
+            nn = nn.getNext();
+
+        E rv = nn.getData();
+        nn.setData(obj);
+
+        return rv;
+    }
+
+    @Override
+    public E remove(int index) {
+        Node<E> nn = head;
+        E rv;
+        for(int i = 0; i < index - 1; i++)
+            nn = nn.getNext();
+
+        rv = nn.getNext().getData();
+        nn.setNext(nn.getNext().getNext());
+
+        return rv;
+    }
+    
+    public void print() {
+        Node<E> nn = head;
+        for(int i = 1; i <= size(); i++) {
+            System.out.println("Node " + i + " has an object of " + nn.getData());
+            nn = nn.getNext();
+        }
+        
+    }
+
+}
