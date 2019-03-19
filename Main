@@ -17,7 +17,7 @@ public class Main {
         //Task 2
         for(int i = 0; i < circleLinkedList.size(); i++) {
             double cRadLL = circleLinkedList.get(i).getRad();
-            for(int j = 0; j < circleLinkedList.size(); i++) {
+            for(int j = 0; j < circleLinkedList.size(); j++) {
                 if(circleLinkedList.get(j).getRad() % cRadLL == 0)
                     circleLinkedList.remove(j);
             }
@@ -32,7 +32,7 @@ public class Main {
         //Task 4
         for(int i = 0; i < circleArrayList.size(); i++) {
             double cRadAL = circleArrayList.get(i).getRad();
-            for(int j = 0; j < circleArrayList.size(); i++) {
+            for(int j = 0; j < circleArrayList.size(); j++) {
                 if (circleArrayList.get(j).getRad() % cRadAL == 0)
                     circleArrayList.remove(j);
             }
