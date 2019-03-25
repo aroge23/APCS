@@ -1,0 +1,135 @@
+package com.company;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+import com.company.UserInput;
+import java.lang.Math;
+
+public class Main {
+    public static void main(String args[]) {
+        System.out.println(mod5(5));
+        System.out.println(modN(13, 5));
+        System.out.println(doubler("ABC"));
+        System.out.println(cRaZyCaSe("crazycase"));
+        System.out.println(factorial(5));
+        System.out.println(fib(5));
+        System.out.println(pascal(6, 4));
+        System.out.println(pigLatin("grape"));
+
+    }
+
+    public static int mod5(int arg) {
+        if (arg < 5)
+            return arg;
+
+        return mod5(arg - 5);
+    }
+
+    public static int modN(int arg, int n) {
+        if (arg < n)
+            return arg;
+        return modN(arg - n, n);
+    }
+
+    public static String doubler(String s){
+        if(s.length() < 1)
+            return "";
+        else
+            return s.substring(0,1) +s.substring(0,1) + doubler(s.substring(1));
+    }
+
+    public static String cRaZyCaSe(String s) {
+        if(s.length() <= 3) {
+            s = s.substring(0, 1) + s.substring(1, 2).toUpperCase() + s.substring(2);
+            return s;
+        }
+
+        s = s.substring(0, 1) + s.substring(1, 2).toUpperCase() + s.substring(2);
+        return s.substring(0,2) + cRaZyCaSe(s.substring(2));
+
+    }
+
+    public static String starNumber(int n){
+        if(n <= 0 )
+            return "";
+        else
+            return n%10 + "*" + starNumber(n/10);
+    }
+
+    public static int factorial(int n){
+        if(n < 1)
+            return 1;
+        else
+            return n * factorial(n-1);
+    }
+
+    public static int fib(int n) {
+        if(n <= 1)
+            return n;
+        else
+            return fib(n-1) + fib(n-2);
+    }
+
+    public static int pascal(int row, int col) {
+        if (row == col || col == 1)
+            return 1;
+        else
+            return pascal(row-1, col-1) + pascal(row-1, col);
+    }
+
+    public static String NLWS(String sentence) {
+        if(sentence.equals(""))
+            return "";
+        if(sentence.substring(0, 1).compareTo(" ") != 0)
+            return sentence;
+        return NLWS(sentence.substring(1));
+    }
+
+    public static String BV(String sentence) {
+        if(sentence.substring(0,1).toLowerCase().equals("a") || sentence.substring(0,1).toLowerCase().equals("e") ||
+                sentence.substring(0,1).toLowerCase().equals("i") || sentence.substring(0,1).toLowerCase().equals("o")
+                || sentence.substring(0,1).toLowerCase().equals("u"))
+            return "";
+
+        return sentence.substring(0,1) + BV(sentence.substring(1));
+    }
+
+    public static String AV(String sentence) {
+        if(sentence.substring(0,1).toLowerCase().compareTo("a") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("e") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("i") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("o") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("u") == 0)
+            return sentence;
+
+        return AV(sentence.substring(1));
+    }
+
+    public static String FW(String sentence) {
+        if(sentence.substring(0,1).compareTo(" ") == 0)
+            return "";
+
+        return sentence.substring(0,1) + FW(sentence.substring(1));
+    }
+
+    public static String BFW(String sentence) {
+        if(sentence.substring(0,1).compareTo(" ") == 0)
+            return sentence.substring(1);
+
+        return BFW(sentence.substring(1));
+    }
+
+    public static String pigLatin(String sentence) {
+        String rv = NLWS(sentence);
+        if(sentence.substring(0,1).toLowerCase().compareTo("a") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("e") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("i") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("o") == 0 ||
+                sentence.substring(0,1).toLowerCase().compareTo("u") == 0)
+            rv += "way";
+        else
+            rv = AV(sentence) + BV(sentence) + "ay";
+
+        return rv;
+    }
+}
